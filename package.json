@@ -7,6 +7,7 @@
   "repository": "https://github.com/Microsoft/HealthBotContainerSample.git",
   "dependencies": {
     "cookie-parser": "^1.4.3",
+    "dotenv": "^8.0.0",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "request": "^2.81.0",
