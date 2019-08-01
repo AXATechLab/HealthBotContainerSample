@@ -37,7 +37,6 @@ app.get('/chatBot',  function(req, res) {
         },
         json: true
     };
-    console.log('options -> ', options);
     rp(options).then(function (parsedBody) {
         let userId = req.query.userId || req.cookies.userid;
         if (!userId) {
