@@ -50,8 +50,8 @@ app.get('/chatBot',  function(req, res) {
             connectorToken: parsedBody.token,
             /*
             optionalAttributes: {
-                age: 33
-            }, 
+                age: 35
+            },
             */
             directLineURI: process.env.DIRECTLINE_ENDPOINT_URI
         };

@@ -11,7 +11,7 @@ html, body {
 
 #botContainer {
   float: right;
-  height: 99%;
+  height: 90%;
   width: 460px;
   position: relative;
   display: none;
@@ -21,4 +21,8 @@ html, body {
 
 #botContainer.wc-display {
   display: block;
+}
+
+.hiddenSession {
+  display: hidden;
 }

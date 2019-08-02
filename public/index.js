@@ -1,5 +1,8 @@
+
+let isFirstTime = true;
+
 function requestChatBot(loc) {
-    const params = BotChat.queryParams(location.search);
+    const params = computeParameters();
     const oReq = new XMLHttpRequest();
     oReq.addEventListener("load", initBotConversation);
     var path = "/chatBot";
@@ -14,7 +17,51 @@ function requestChatBot(loc) {
     oReq.send();
 }
 
+function computeParameters() {
+    const params = BotChat.queryParams(location.search);
+    const builtParams = {};
+
+    if (sessionStorage && sessionStorage.getItem('userId')) {
+        builtParams.userId = sessionStorage.getItem('userId');
+    }
+
+    return { ...builtParams, ...params };
+}
+
+function clearSession() {
+    if (sessionStorage && sessionStorage.getItem('userId')) {
+        const currentUser = sessionStorage.getItem('userId');
+        console.log(`Bye ${currentUser}`);
+        sessionStorage.clear()
+        const sessionContainer = document.getElementById('session-container');
+        sessionContainer.style.display = 'none';
+    }
+}
+
 function chatRequested() {
+    if (sessionStorage) {
+        const sessionContainer = document.getElementById('session-container');
+        const greetinsContainer = document.getElementById('user-greetings');
+        let greetings = '';
+        let currentUser;
+
+        if (!sessionStorage.getItem('userId')) {
+            isFirstTime = true;
+            const randomId = new Date().getTime();
+            currentUser = `user-${randomId}`;
+            sessionStorage.setItem('userId', currentUser);
+            greetings = `Hello ${currentUser}`
+        } else {
+            isFirstTime = false;
+            currentUser = sessionStorage.getItem('userId');
+            greetings = `Hello again ${currentUser}!`;
+        }
+        console.log(greetings);
+
+        greetinsContainer.textContent = greetings;
+        sessionContainer.style.display = 'block';
+    }
+    
     const params = BotChat.queryParams(location.search);
     var shareLocation = params["shareLocation"];
     if (shareLocation) {
@@ -59,7 +106,8 @@ function initBotConversation() {
     const tokenPayload = JSON.parse(atob(jsonWebToken.split('.')[1]));
     const user = {
         id: tokenPayload.userId,
-        name: tokenPayload.userName
+        name: tokenPayload.userName,
+        isFirstTime
     };
     let domain = undefined;
     if (tokenPayload.directLineURI) {
@@ -82,7 +130,7 @@ function startChat(user, botConnection) {
     const botContainer = document.getElementById('botContainer');
     botContainer.classList.add("wc-display");
     const locale = (params.locale) ? params.locale : 'en';
-
+    console.log('init conversation with user:', user);
     BotChat.App({
         botConnection,
         user,
