@@ -1,5 +1,13 @@
 
 let isFirstTime = true;
+const dictionary = {
+    es: {
+        greetings: 'Hola'
+    },
+    en: {
+        greetings: 'Hello'
+    }
+}
 
 function requestChatBot(loc) {
     const params = computeParameters();
@@ -28,40 +36,7 @@ function computeParameters() {
     return { ...builtParams, ...params };
 }
 
-function clearSession() {
-    if (sessionStorage && sessionStorage.getItem('userId')) {
-        const currentUser = sessionStorage.getItem('userId');
-        console.log(`Bye ${currentUser}`);
-        sessionStorage.clear()
-        const sessionContainer = document.getElementById('session-container');
-        sessionContainer.style.display = 'none';
-    }
-}
-
 function chatRequested() {
-    if (sessionStorage) {
-        const sessionContainer = document.getElementById('session-container');
-        const greetinsContainer = document.getElementById('user-greetings');
-        let greetings = '';
-        let currentUser;
-
-        if (!sessionStorage.getItem('userId')) {
-            isFirstTime = true;
-            const randomId = new Date().getTime();
-            currentUser = `user-${randomId}`;
-            sessionStorage.setItem('userId', currentUser);
-            greetings = `Hello ${currentUser}`
-        } else {
-            isFirstTime = false;
-            currentUser = sessionStorage.getItem('userId');
-            greetings = `Hello again ${currentUser}!`;
-        }
-        console.log(greetings);
-
-        greetinsContainer.textContent = greetings;
-        sessionContainer.style.display = 'block';
-    }
-    
     const params = BotChat.queryParams(location.search);
     var shareLocation = params["shareLocation"];
     if (shareLocation) {
@@ -70,6 +45,12 @@ function chatRequested() {
     else {
         requestChatBot();
     }
+}
+
+function getLocale() {
+    const params = BotChat.queryParams(location.search);
+
+    return (params.locale) ? params.locale : 'en';
 }
 
 function getUserLocation(callback) {
@@ -97,6 +78,7 @@ function sendUserLocation(botConnection, user) {
 }
 
 function initBotConversation() {
+    const locale = getLocale();
     if (this.status >= 400) {
         alert(this.statusText);
         return;
@@ -120,22 +102,21 @@ function initBotConversation() {
     });
     startChat(user, botConnection);
     botConnection.postActivity({type: "event", value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
+    botConnection.postActivity({type: "message", text: dictionary[locale].greetings, from: user}).subscribe(function (id) {console.log("hello!")});
     botConnection.activity$
         .filter(function (activity) {return activity.type === "event" && activity.name === "shareLocation"})
         .subscribe(function (activity) {sendUserLocation(botConnection, user)});
 }
 
 function startChat(user, botConnection) {
-    const params = BotChat.queryParams(location.search);
     const botContainer = document.getElementById('botContainer');
     botContainer.classList.add("wc-display");
-    const locale = (params.locale) ? params.locale : 'en';
+    const locale = getLocale();
     console.log('init conversation with user:', user);
     BotChat.App({
         botConnection,
         user,
         locale,
         resize: 'detect'
-        // sendTyping: true,    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing
     }, botContainer);
 }
