@@ -26,3 +26,100 @@ html, body {
 .hiddenSession {
   display: hidden;
 }
+
+.wc-message-content{
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+  background-color: #eff1f4;
+}
+.ac-selectable{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+  min-width: 0px !important;
+  flex: 1 1 104px !important;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+}
+.ac-service-header{
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  font-size: 16px;
+  line-height: 17.29px;
+  color: rgb(128, 140, 149);
+  font-weight: 700;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+.ac-card-text{
+  overflow: hidden !important;
+  font-family: "Segoe UI", sans-serif !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  line-height: 15.96px !important;
+  color: rgb(0, 0, 0) !important;
+  font-weight: 400 !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+  flex: 0 0 auto !important;
+  padding: 0px 9px 14px 8px !important;
+}
+
+.ac-card-header{
+  overflow: hidden !important;
+  font-family: "Segoe UI", sans-serif !important;
+  text-align: left !important;
+  font-size: 16px !important;
+  color: #00008f !important;
+  font-weight: 400 !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+  flex: 0 0 auto !important;
+  padding: 0px 9px 0px 8px !important;
+}
+.ac-row{
+  border-top: 1px solid #e5e5e5;
+}
+.ac-row-first{
+}
+.ac-row-header{
+}
+.ac-table{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  border: 1px solid #e5e5e5;
+}
+
+.ac-row-text{
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  text-align: left;
+  font-size: 16px;
+  line-height: 17.29px;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 18px 46px 13px 29px;
+}
+
+.ac-table-button-div{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  float: right;
+}
+.format-markdown{
+  padding: 10px;
+}
