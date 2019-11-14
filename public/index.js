@@ -1,12 +1,25 @@
 
-const dictionary = {
-    es: {
-        greetings: 'Hola'
-    },
-    en: {
-        greetings: 'Hello'
+const getDictionary = locale => {
+    const d = {
+        es: {
+            greetings: 'Hola'
+        },
+        en: {
+            greetings: 'Hello'
+        }
+    };
+    let dictionary;
+    // const spanish = ['es', 'es-es', 'es_es'];
+    const english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
+
+    if (english.includes(locale.toLowerCase())) {
+        dictionary = d.en;
+    } else {
+        dictionary = d.es;
     }
-}
+
+    return dictionary;
+};
 
 function requestChatBot(loc) {
     const params = computeParameters();
@@ -65,7 +78,7 @@ function initBotConversation() {
     });
     startChat(user, botConnection);
     botConnection.postActivity({type: "event", value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
-    botConnection.postActivity({type: "message", text: dictionary[locale].greetings, from: user}).subscribe(function (id) {console.log("hello!")});
+    botConnection.postActivity({type: "message", text: getDictionary(locale).greetings, from: user}).subscribe(function (id) {console.log("hello!")});
 }
 
 function startChat(user, botConnection) {
