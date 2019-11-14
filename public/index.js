@@ -11,7 +11,7 @@ const getDictionary = locale => {
     let dictionary;
     // const spanish = ['es', 'es-es', 'es_es'];
     const english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
-
+    console.log('incoming locale:', locale);
     if (english.includes(locale.toLowerCase())) {
         dictionary = d.en;
     } else {
@@ -56,6 +56,8 @@ function getLocale() {
 
 function initBotConversation() {
     const locale = getLocale();
+    const greetings = getDictionary(locale).greetings;
+
     if (this.status >= 400) {
         alert(this.statusText);
         return;
@@ -78,14 +80,14 @@ function initBotConversation() {
     });
     startChat(user, botConnection);
     botConnection.postActivity({type: "event", value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
-    botConnection.postActivity({type: "message", text: getDictionary(locale).greetings, from: user}).subscribe(function (id) {console.log("hello!")});
+    botConnection.postActivity({type: "message", text: greetings, from: user}).subscribe(function (id) {console.log("Greetings: " + greetings)});
 }
 
 function startChat(user, botConnection) {
     const botContainer = document.getElementById('botContainer');
     botContainer.classList.add("wc-display");
     const locale = getLocale();
-    console.log('init conversation with user:', user);
+    console.log('init conversation with user:', user,' and locale: ',locale);
     BotChat.App({
         botConnection,
         user,
