@@ -79,8 +79,9 @@ function initBotConversation() {
         webSocket: true
     });
     startChat(user, botConnection);
+    console.log('used locale', locale);
     botConnection.postActivity({type: "event", value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
-    botConnection.postActivity({type: "message", text: greetings, from: user}).subscribe(function (id) {console.log("Greetings: " + greetings)});
+    botConnection.postActivity({type: "message", text: greetings, from: user, locale}).subscribe(function (id) {console.log("Greetings: " + greetings)});
 }
 
 function startChat(user, botConnection) {
