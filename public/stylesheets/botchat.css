@@ -455,7 +455,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 .wc-console .wc-send.hidden {
     visibility: hidden; }
 .wc-console.has-upload-button .wc-textbox {
-    left: 48px; }
+    left: 23px; }
 
 .wc-console .wc-textbox input {
     background-color: transparent; }
@@ -611,7 +611,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 } .wc-message-groups {
 
     background: #ffffff;
-    margin: 80px 5px 0px;
+    margin: 70px 5px 0px;
     bottom: 50px;
     left: 0;
     transform: translateY(0);
@@ -623,20 +623,21 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
     right: 0;
     top: 38px;
     transition: transform 0.2s cubic-bezier(0, 0, 0.5, 1);
-    border-radius: 10px;
+          border-radius: 10px 10px 0 0;
 }
     .wc-console {
         background: #ffffff;
-        border: 2px solid #eff1f4;
         bottom: 0;
         box-sizing: border-box;
         height: 50px;
         left: 0;
         position: absolute;
         right: 0;
-        border-radius: 10px;
+        border-radius: 0 0 10px 10px;
+        border-style: solid;
+        border-color: #eff1f4;
+        border-width: 2px 0 2px 0;
     }
-
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -648,40 +649,88 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
         left: 11px;
         right: 49px; }
     .wc-chatview-panel {
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background: #eff1f4;
-} .wc-message-groups {
-    background: #ffffff;
-    margin: 80px 180px 0px;
-    bottom: 50px;
-    left: 0;
-    transform: translateY(0);
-    outline: 0;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding: 10px 72px;
-    position: absolute;
-    right: 0;
-    top: 38px;
-    transition: transform 0.2s cubic-bezier(0, 0, 0.5, 1);
-    border-radius: 10px;
-}
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: #eff1f4;
+    } .wc-message-groups {
+          background: #ffffff;
+          margin: 70px 20px 0px;
+          bottom: 50px;
+          left: 0;
+          transform: translateY(0);
+          outline: 0;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          padding: 10px 72px;
+          position: absolute;
+          right: 0;
+          top: 38px;
+          transition: transform 0.2s cubic-bezier(0, 0, 0.5, 1);
+              border-radius: 10px 10px 0 0;
+      }
     .wc-console {
         background: #ffffff;
-        border: 2px solid #eff1f4;
         bottom: 0;
         box-sizing: border-box;
         height: 50px;
         left: 0;
         position: absolute;
         right: 0;
-        border-radius: 10px;
+        border-radius: 0 0 10px 10px;
+        margin: 0 20px;
+        border-style: solid;
+        border-color: #eff1f4;
+        border-width: 2px 0 2px 0;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .wc-console .wc-send {
+        right: 0; }
+    .wc-console .wc-textbox {
+        bottom: 0;
+        left: 11px;
+        right: 49px; }
+    .wc-chatview-panel {
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: #eff1f4;
+    } .wc-message-groups {
+          background: #ffffff;
+          margin: 70px 180px 0px;
+          bottom: 50px;
+          left: 0;
+          transform: translateY(0);
+          outline: 0;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          padding: 10px 72px;
+          position: absolute;
+          right: 0;
+          top: 38px;
+          transition: transform 0.2s cubic-bezier(0, 0, 0.5, 1);
+          border-radius: 10px 10px 0 0;
+      }
+    .wc-console {
+        background: #ffffff;
+        bottom: 0;
+        box-sizing: border-box;
+        height: 50px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        border-radius: 0 0 10px 10px;
         margin-left: 180px;
         margin-right: 180px;
+        border-style: solid;
+        border-color: #eff1f4;
+        border-width: 2px 0 2px 0;
     }
 }
