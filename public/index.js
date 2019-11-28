@@ -1,3 +1,15 @@
+const english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
+const spanish = ['es', 'es-es', 'en_es'];
+
+const defaultLocale = 'es-es';
+
+const isValidLocale = candidate => ([...english, ...spanish].includes(params.locale.toLowerCase()));
+
+function getLocale() {
+    const params = BotChat.queryParams(location.search);
+
+    return (params.locale && isValidLocale(params.locale)) ? params.locale : defaultLocale;
+}
 
 const getDictionary = locale => {
     const d = {
@@ -9,8 +21,7 @@ const getDictionary = locale => {
         }
     };
     let dictionary;
-    // const spanish = ['es', 'es-es', 'es_es'];
-    const english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
+    
     console.log('incoming locale:', locale);
     if (english.includes(locale.toLowerCase())) {
         dictionary = d.en;
@@ -26,11 +37,7 @@ function requestChatBot(loc) {
     const oReq = new XMLHttpRequest();
     oReq.addEventListener("load", initBotConversation);
     var path = "/chatBot";
-    path += ((params["userName"]) ? "?userName=" + params["userName"] : "?userName=you");
-    if (loc) {
-        path += "&lat=" + loc.lat + "&long=" + loc.long;
-    }
-
+    path += "?userName=you";
     oReq.open("GET", path);
     oReq.send();
 }
@@ -42,18 +49,6 @@ function computeParameters() {
     return { ...builtParams, ...params };
 }
 
-function chatRequested() {
-    const params = BotChat.queryParams(location.search);
-
-   requestChatBot();
-}
-
-function getLocale() {
-    const params = BotChat.queryParams(location.search);
-
-    return (params.locale) ? params.locale : 'en';
-}
-
 function initBotConversation() {
     const locale = getLocale();
     const greetings = getDictionary(locale).greetings;
@@ -62,7 +57,6 @@ function initBotConversation() {
         alert(this.statusText);
         return;
     }
-    // extract the data from the JWT
     const jsonWebToken = this.response;
     const tokenPayload = JSON.parse(atob(jsonWebToken.split('.')[1]));
     const user = {
