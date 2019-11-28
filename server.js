@@ -24,7 +24,7 @@ app.listen(port, function() {
 app.get('/chatBot',  function(req, res) {
     const options = {
         method: 'POST',
-        uri: 'https://directline.botframework.com/v3/directline/tokens/generate',
+        uri: 'https://europe.directline.botframework.com/v3/directline/tokens/generate',
         headers: {
             'Authorization': 'Bearer ' + process.env.WEBCHAT_SECRET
         },
