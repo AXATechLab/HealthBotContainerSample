@@ -3,7 +3,7 @@ const spanish = ['es', 'es-es', 'en_es'];
 
 const defaultLocale = 'es-es';
 
-const isValidLocale = candidate => ([...english, ...spanish].includes(params.locale.toLowerCase()));
+const isValidLocale = candidate => ([...english, ...spanish].includes(candidate.toLowerCase()));
 
 function getLocale() {
     const params = BotChat.queryParams(location.search);
