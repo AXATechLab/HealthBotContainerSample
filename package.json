@@ -1,6 +1,6 @@
 {
   "name": "healthbot-container",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Microsoft Health bot web client",
   "main": "server.js",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.15.3",
     "helmet": "^3.21.2",
-    "jsonwebtoken": "^7.4.1",
+    "jsonwebtoken": "^8.5.1",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
