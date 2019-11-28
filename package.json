@@ -1,10 +1,8 @@
 {
   "name": "healthbot-container",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Microsoft Health bot web client",
   "main": "server.js",
-  "license": "MIT",
-  "repository": "https://github.com/Microsoft/HealthBotContainerSample.git",
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "dotenv": "^8.0.0",

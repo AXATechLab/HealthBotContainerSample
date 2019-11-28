@@ -33,8 +33,14 @@ app.get('/chatBot',  function(req, res) {
     rp(options).then(function (parsedBody) {
         let userId = req.query.userId || req.cookies.userid;
         if (!userId) {
+            const expiryDate = new Date( Date.now() + 3600 );
+
             userId = crypto.randomBytes(4).toString('hex');
-            res.cookie('userid', userId);
+            res.cookie('userid', userId, { secure: true,
+                httpOnly: true,
+                path: '/',
+                expires: expiryDate
+              });
         }
 
         const response = {
