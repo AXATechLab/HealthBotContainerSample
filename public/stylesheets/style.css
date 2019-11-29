@@ -124,3 +124,6 @@ html, body {
 .format-markdown{
   padding: 10px;
 }
+.bot-avatar{
+display: none;
+}
