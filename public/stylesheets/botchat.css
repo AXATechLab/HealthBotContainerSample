@@ -178,7 +178,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 
 .wc-message-content img {
     max-height: 320px;
-    max-width: 100%; }
+    max-width: 100% !important; }
 
 .wc-message-content .video iframe {
     border: 0; }

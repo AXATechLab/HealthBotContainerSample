@@ -39,10 +39,10 @@ html, body {
   box-sizing: border-box !important;
   min-width: 0px !important;
   flex: 1 1 104px !important;
-  border-radius: 10px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-  background: #ffffff;
-  padding: 5px;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3) !important;
+  background: #ffffff !important;
+  padding: 5px !important;
 }
 .ac-service-header{
   overflow: hidden;
