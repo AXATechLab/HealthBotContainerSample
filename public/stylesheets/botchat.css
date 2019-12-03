@@ -178,7 +178,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 
 .wc-message-content img {
     max-height: 320px;
-    max-width: 100%; }
+    max-width: 100% !important; }
 
 .wc-message-content .video iframe {
     border: 0; }
@@ -320,12 +320,6 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
     overflow: hidden;
     background-color: #eff1f4;
 }
-
-.wc-hscroll {
-    /* allow horizontal scrolling but hide the scrollbar */
-    overflow-x: scroll;
-    overflow-y: hidden;
-    margin-left: 180px;}
 
 .wc-hscroll > ul {
     white-space: nowrap; }
@@ -591,6 +585,11 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 767px) {
+    .wc-hscroll {
+        /* allow horizontal scrolling but hide the scrollbar */
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-left: 0;}
     .wc-console .wc-send {
         right: 0;
     }
@@ -642,6 +641,11 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+    .wc-hscroll {
+        /* allow horizontal scrolling but hide the scrollbar */
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-left: 20px;}
     .wc-console .wc-send {
         right: 0; }
     .wc-console .wc-textbox {
@@ -688,6 +692,11 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
     }
 }
 @media only screen and (min-width: 1024px) {
+    .wc-hscroll {
+        /* allow horizontal scrolling but hide the scrollbar */
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-left: 180px;}
     .wc-console .wc-send {
         right: 0; }
     .wc-console .wc-textbox {
