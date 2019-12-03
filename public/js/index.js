@@ -63,7 +63,7 @@ function startChat(user, botConnection) {
     const botContainer = document.getElementById('botContainer');
     botContainer.classList.add("wc-display");
     const locale = getLocale();
-    console.log('init conversation with user:', user,' and locale: ',locale);
+    // console.log('init conversation with user:', user,' and locale: ',locale);
     BotChat.App({
         botConnection,
         user,

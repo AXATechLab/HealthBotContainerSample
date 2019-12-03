@@ -127,3 +127,6 @@ html, body {
 .bot-avatar{
     display: none;
 }
+select {
+  background: #ffffff;
+}
