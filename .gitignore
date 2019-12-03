@@ -1,5 +1,6 @@
 node_modules/
 .idea
 .env
+public/chatbot-client-code
 
 public/chatbot-client-code

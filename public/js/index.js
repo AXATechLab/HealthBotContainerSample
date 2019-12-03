@@ -11,34 +11,15 @@ function getLocale() {
     return (params.locale && isValidLocale(params.locale)) ? params.locale : defaultLocale;
 }
 
-const getDictionary = locale => {
-    const d = {
-        es: {
-            greetings: 'Hola'
-        },
-        en: {
-            greetings: 'Hello'
-        }
-    };
-    let dictionary;
-    
+const getGreetings = locale => {
     console.log('incoming locale:', locale);
-    if (english.includes(locale.toLowerCase())) {
-        dictionary = d.en;
-    } else {
-        dictionary = d.es;
-    }
-
-    return dictionary;
+    return english.includes(locale.toLowerCase()) ? 'Hello' : 'Hola';
 };
 
-function requestChatBot(loc) {
-    const params = computeParameters();
+function requestChatBot() {
     const oReq = new XMLHttpRequest();
     oReq.addEventListener("load", initBotConversation);
-    var path = "/chatBot";
-    path += "?userName=you";
-    oReq.open("GET", path);
+    oReq.open("GET", "/chatBot?userName=you");
     oReq.send();
 }
 
@@ -51,10 +32,10 @@ function computeParameters() {
 
 function initBotConversation() {
     const locale = getLocale();
-    const greetings = getDictionary(locale).greetings;
+    const greetings = getGreetings(locale);
 
     if (this.status >= 400) {
-        alert(this.statusText);
+        console.error(this.statusText);
         return;
     }
     const jsonWebToken = this.response;
@@ -82,7 +63,7 @@ function startChat(user, botConnection) {
     const botContainer = document.getElementById('botContainer');
     botContainer.classList.add("wc-display");
     const locale = getLocale();
-    console.log('init conversation with user:', user,' and locale: ',locale);
+    // console.log('init conversation with user:', user,' and locale: ',locale);
     BotChat.App({
         botConnection,
         user,
