@@ -64,5 +64,6 @@ app.get('/chatBot',  function(req, res) {
 });
 
 app.get('*', function(req, res){
-    res.status(404).send('Page not found');
+    const notFoundPath = path.join(__dirname, 'public', '404.html');
+    res.status(404).sendFile(notFoundPath);
 });

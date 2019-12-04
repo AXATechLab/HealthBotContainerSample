@@ -9,6 +9,13 @@ html, body {
   padding-left: 10px;
 }
 
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  vertical-align: middle;
+}
+
 #botContainer {
   float: right;
   height: 90%;
@@ -22,6 +29,12 @@ html, body {
 #botContainer.wc-display {
   display: block;
 }
+
+#notFoundContainer {
+  text-align: center;
+}
+
+
 
 .hiddenSession {
   display: hidden;
