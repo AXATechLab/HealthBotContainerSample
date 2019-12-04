@@ -3,7 +3,10 @@ const spanish = ['es', 'es-es', 'en_es'];
 
 const defaultLocale = 'es-es';
 
-const isValidLocale = candidate => ([...english, ...spanish].includes(candidate.toLowerCase()));
+function isValidLocale(candidate) {
+    const validLangs = english.concat(spanish);
+    return validLangs.includes(candidate.toLowerCase());
+}
 
 function getLocale() {
     const params = BotChat.queryParams(location.search);
@@ -11,10 +14,10 @@ function getLocale() {
     return (params.locale && isValidLocale(params.locale)) ? params.locale : defaultLocale;
 }
 
-const getGreetings = locale => {
+function getGreetings(locale) {
     console.log('incoming locale:', locale);
     return english.includes(locale.toLowerCase()) ? 'Hello' : 'Hola';
-};
+}
 
 function requestChatBot() {
     const oReq = new XMLHttpRequest();

@@ -62,3 +62,7 @@ app.get('/chatBot',  function(req, res) {
         console.log('failed');
     });
 });
+
+app.get('*', function(req, res){
+    res.status(404).send('Page not found');
+});
