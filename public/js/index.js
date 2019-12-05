@@ -26,13 +26,6 @@ function requestChatBot() {
     oReq.send();
 }
 
-function computeParameters() {
-    const params = BotChat.queryParams(location.search);
-    const builtParams = {};
-
-    return { ...builtParams, ...params };
-}
-
 function initBotConversation() {
     const locale = getLocale();
     const greetings = getGreetings(locale);
