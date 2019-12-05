@@ -28,7 +28,7 @@ input[type=checkbox] {
 
 #botContainer {
   float: right;
-  height: 90%;
+  height: 100%;
   width: 460px;
   position: relative;
   display: none;
@@ -153,3 +153,10 @@ input[type=checkbox] {
 select {
   background: #ffffff;
 }
+
+/*
+// que solo aplique al report
+.ac-container {
+  flex: 1 0 !important;
+}
+*/
