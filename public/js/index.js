@@ -52,7 +52,7 @@ function initBotConversation() {
     startChat(user, botConnection);
     console.log('used locale', locale);
     botConnection.postActivity({type: "event", value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
-    botConnection.postActivity({type: "message", text: greetings, from: user, locale}).subscribe(function (id) {console.log("Greetings: " + greetings)});
+    botConnection.postActivity({type: "message", text: greetings, from: user, locale: locale}).subscribe(function (id) {console.log("Greetings: " + greetings)});
 }
 
 function startChat(user, botConnection) {
@@ -61,9 +61,9 @@ function startChat(user, botConnection) {
     const locale = getLocale();
     // console.log('init conversation with user:', user,' and locale: ',locale);
     BotChat.App({
-        botConnection,
-        user,
-        locale,
+        botConnection: botConnection,
+        user: user,
+        locale: locale,
         resize: 'detect'
     }, botContainer);
 }

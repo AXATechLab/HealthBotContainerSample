@@ -154,6 +154,10 @@ select {
   background: #ffffff;
 }
 
+.title-container {
+  display: none;
+}
+
 /*
 // que solo aplique al report
 .ac-container {
