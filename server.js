@@ -16,6 +16,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const port = process.env.PORT || 3000;
+const expiryOffsetMinutes = process.env.EXPIRY_TIME_IN_MINUTES ? parseInt(process.env.EXPIRY_TIME_IN_MINUTES) : 120;
+const expiryOffsetMillis = expiryOffsetMinutes * 60 * 1000;
+const isSecure = process.env.NODE_ENV === 'development' ? false : true;
 
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);
@@ -31,12 +34,13 @@ app.get('/chatBot',  function(req, res) {
         json: true
     };
     rp(options).then(function (parsedBody) {
-        let userId = req.query.userId || req.cookies.userid;
+        let userId = req.cookies.userid;
         if (!userId) {
-            const expiryDate = new Date( Date.now() + 3600 );
+            const expiryDate = new Date( Date.now() + expiryOffsetMillis );
 
             userId = crypto.randomBytes(4).toString('hex');
-            res.cookie('userid', userId, { secure: true,
+            res.cookie('userid', userId, { 
+                secure: isSecure,
                 httpOnly: true,
                 path: '/',
                 expires: expiryDate
@@ -57,4 +61,9 @@ app.get('/chatBot',  function(req, res) {
         res.status(err.statusCode).send();
         console.log('failed');
     });
+});
+
+app.get('*', function(req, res){
+    const notFoundPath = path.join(__dirname, 'public', '404.html');
+    res.status(404).sendFile(notFoundPath);
 });

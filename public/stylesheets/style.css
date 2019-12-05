@@ -3,15 +3,32 @@ html, body {
   margin: 0;
 }
 
+input[type=radio] {
+  width: 20px;
+  height: 20px;
+}
+
+input[type=checkbox] {
+  width: 25px;
+  height: 25px;
+}
+
 .content {
   float: left;
   height: 100%;
   padding-left: 10px;
 }
 
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  vertical-align: middle;
+}
+
 #botContainer {
   float: right;
-  height: 90%;
+  height: 100%;
   width: 460px;
   position: relative;
   display: none;
@@ -22,6 +39,12 @@ html, body {
 #botContainer.wc-display {
   display: block;
 }
+
+#notFoundContainer {
+  text-align: center;
+}
+
+
 
 .hiddenSession {
   display: hidden;
@@ -39,10 +62,10 @@ html, body {
   box-sizing: border-box !important;
   min-width: 0px !important;
   flex: 1 1 104px !important;
-  border-radius: 10px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-  background: #ffffff;
-  padding: 5px;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3) !important;
+  background: #ffffff !important;
+  padding: 5px !important;
 }
 .ac-service-header{
   overflow: hidden;
@@ -124,3 +147,24 @@ html, body {
 .format-markdown{
   padding: 10px;
 }
+.bot-avatar{
+    display: none;
+}
+select {
+  background: #ffffff;
+}
+
+.title-container {
+  display: none;
+}
+
+.ac-input div {
+  margin: 5px auto;
+}
+
+/*
+// apply only to report
+.ac-container {
+  flex: 1 0 !important;
+}
+*/

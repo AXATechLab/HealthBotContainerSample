@@ -177,8 +177,8 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
     box-shadow: 0px 1px 1px 0px #ffa333; }
 
 .wc-message-content img {
-    max-height: 320px;
-    max-width: 100%; }
+    max-height: 250px !important;
+    max-width: 100% !important; }
 
 .wc-message-content .video iframe {
     border: 0; }
@@ -320,12 +320,6 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
     overflow: hidden;
     background-color: #eff1f4;
 }
-
-.wc-hscroll {
-    /* allow horizontal scrolling but hide the scrollbar */
-    overflow-x: scroll;
-    overflow-y: hidden;
-    margin-left: 180px;}
 
 .wc-hscroll > ul {
     white-space: nowrap; }
@@ -591,6 +585,14 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 767px) {
+    .wc-header {
+        max-height: 60px;
+    }
+    .wc-hscroll {
+        /* allow horizontal scrolling but hide the scrollbar */
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-left: 0;}
     .wc-console .wc-send {
         right: 0;
     }
@@ -611,7 +613,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 } .wc-message-groups {
 
     background: #ffffff;
-    margin: 70px 5px 0px;
+    margin: 30px 5px 0px;
     bottom: 50px;
     left: 0;
     transform: translateY(0);
@@ -642,6 +644,14 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+    .wc-header {
+        max-height: 60px;
+    }
+    .wc-hscroll {
+        /* allow horizontal scrolling but hide the scrollbar */
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-left: 20px;}
     .wc-console .wc-send {
         right: 0; }
     .wc-console .wc-textbox {
@@ -658,7 +668,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
         background: #eff1f4;
     } .wc-message-groups {
           background: #ffffff;
-          margin: 70px 20px 0px;
+          margin: 30px 20px 0px;
           bottom: 50px;
           left: 0;
           transform: translateY(0);
@@ -688,6 +698,11 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
     }
 }
 @media only screen and (min-width: 1024px) {
+    .wc-hscroll {
+        /* allow horizontal scrolling but hide the scrollbar */
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-left: 180px;}
     .wc-console .wc-send {
         right: 0; }
     .wc-console .wc-textbox {
