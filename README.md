@@ -11,3 +11,4 @@ Microsoft Health bot web client.
 
 `WEBCHAT_SECRET`
 
+`EXPIRY_TIME_IN_MINUTES` (120 by default)
