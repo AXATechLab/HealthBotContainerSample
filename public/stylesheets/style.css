@@ -158,8 +158,12 @@ select {
   display: none;
 }
 
+.ac-input div {
+  margin: 5px auto;
+}
+
 /*
-// que solo aplique al report
+// apply only to report
 .ac-container {
   flex: 1 0 !important;
 }
