@@ -1,7 +1,14 @@
 require('dotenv').config();
-const appInsights = require("applicationinsights");
-appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY);
-appInsights.start();
+
+if (process.env.NODE_ENV === 'production') {
+    if (!process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
+        throw new Error('Please, add instrumentation key as env var');
+    }
+    const appInsights = require("applicationinsights");
+
+    appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY);
+    appInsights.start();
+}
 
 const helmet = require('helmet')
 const path = require('path');
