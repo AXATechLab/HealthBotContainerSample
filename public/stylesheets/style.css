@@ -168,3 +168,7 @@ select {
   flex: 1 0 !important;
 }
 */
+/* Hide participant */
+.wc-message-from {
+  display: none;
+}
