@@ -172,3 +172,31 @@ select {
 .wc-message-from {
   display: none;
 }
+
+.wc-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.header-link {
+  max-width: 80px;
+  color: #00008f;
+  font-size: 9px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}

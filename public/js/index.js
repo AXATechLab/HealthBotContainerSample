@@ -66,4 +66,16 @@ function startChat(user, botConnection) {
         locale: locale,
         resize: 'detect'
     }, botContainer);
+    addHeaderLink();
+
 }
+function addHeaderLink() {
+    var headerLink = document.createElement('div');
+    var wcHeader = document.getElementsByClassName("wc-header");
+    console.log('wcHeader ',wcHeader);
+    headerLink.id = 'tc-header-link';
+    headerLink.className = 'header-link';
+    headerLink.innerHTML = '<div><a href="/assets/20191220-terms_and_conditions.pdf" target="_blank">Términos y condiciones de uso</a></div><div><a href="/assets/20200107-cookie_policy.pdf" target="_blank">Política de cookies</a></div>';
+    wcHeader[0].appendChild(headerLink);
+}
+
