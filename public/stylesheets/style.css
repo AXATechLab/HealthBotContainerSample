@@ -180,9 +180,25 @@ select {
 }
 
 .header-link {
-  max-width: 80px;
-  color: #00008f;
+  position:absolute;
+  top:15%;
+  right:10%;
   font-size: 9px;
+}
+ 
+.header-link div {
+   float:left; 
+}
+ 
+.header-link div:first-child a{
+  border-right: 1px solid #454545;
+}
+ 
+.header-link a {
+  color:#454545;
+  text-decoration: none;
+  font-style: "Segoe UI", sans-serif; 
+  padding: 0 5px;
 }
 
 a:link {
