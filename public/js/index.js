@@ -3,6 +3,25 @@ const spanish = ['es', 'es-es', 'en_es'];
 
 const defaultLocale = 'es-es';
 
+function setRelAttribute() {
+    const elems = document.body.getElementsByTagName('a');
+    for (let i = 0; i < elems.length; i++) {
+        const elem = elems[i];
+        elem.setAttribute('rel', 'noopener noreferrer nofollow');
+    }
+}
+
+const ready = (callback) => {
+    if (document.readyState !== 'loading') callback();
+    else document.addEventListener('DOMContentLoaded', callback);
+}
+
+ready(() => { 
+    document.body.addEventListener('DOMSubtreeModified', function () {
+        setRelAttribute();
+    }, false);
+});
+
 function isValidLocale(candidate) {
     const validLangs = english.concat(spanish);
     return validLangs.includes(candidate.toLowerCase());
@@ -21,8 +40,8 @@ function getGreetings(locale) {
 
 function requestChatBot() {
     const oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", initBotConversation);
-    oReq.open("GET", "/chatBot?userName=you");
+    oReq.addEventListener('load', initBotConversation);
+    oReq.open('GET', '/chatBot?userName=you');
     oReq.send();
 }
 
@@ -42,7 +61,7 @@ function initBotConversation() {
     };
     let domain = undefined;
     if (tokenPayload.directLineURI) {
-        domain =  "https://" +  tokenPayload.directLineURI + "/v3/directline";
+        domain = `https://${tokenPayload.directLineURI}/v3/directline`;
     }
     const botConnection = new BotChat.DirectLine({
         token: tokenPayload.connectorToken,
@@ -51,13 +70,13 @@ function initBotConversation() {
     });
     startChat(user, botConnection);
     console.log('used locale', locale);
-    botConnection.postActivity({type: "event", value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
-    botConnection.postActivity({type: "message", text: greetings, from: user, locale: locale}).subscribe(function (id) {console.log("Greetings: " + greetings)});
+    botConnection.postActivity({type: 'event', value: jsonWebToken, from: user, name: "InitAuthenticatedConversation"}).subscribe(function (id) {});
+    botConnection.postActivity({type: 'message', text: greetings, from: user, locale: locale}).subscribe(function (id) {console.log("Greetings: " + greetings)});
 }
 
 function startChat(user, botConnection) {
     const botContainer = document.getElementById('botContainer');
-    botContainer.classList.add("wc-display");
+    botContainer.classList.add('wc-display');
     const locale = getLocale();
     // console.log('init conversation with user:', user,' and locale: ',locale);
     BotChat.App({
@@ -75,7 +94,8 @@ function addHeaderLink() {
     console.log('wcHeader ',wcHeader);
     headerLink.id = 'tc-header-link';
     headerLink.className = 'header-link';
-    headerLink.innerHTML = '<div><a href="/assets/20191220-terms_and_conditions.pdf" target="_blank" rel=”noopener noreferrer”>Términos y condiciones de uso</a></div><div><a href="/assets/20200107-cookie_policy.pdf" target="_blank" rel=”noopener noreferrer”>Política de cookies</a></div>';
+    headerLink.innerHTML = '<div><a href="/assets/20191220-terms_and_conditions.pdf" target="_blank">Términos y condiciones de uso</a></div>' + 
+        '<div><a href="/assets/20200107-cookie_policy.pdf" target="_blank">Política de cookies</a></div>';
     wcHeader[0].appendChild(headerLink);
 }
 
