@@ -59,7 +59,7 @@ app.get('/chatBot',  function(req, res) {
 
         const response = {
             userId,
-            userName: req.query.userName,
+            userName: 'You',
             connectorToken: parsedBody.token,
             directLineURI: process.env.DIRECTLINE_ENDPOINT_URI
         };
