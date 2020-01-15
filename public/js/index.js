@@ -41,7 +41,7 @@ function getGreetings(locale) {
 function requestChatBot() {
     const oReq = new XMLHttpRequest();
     oReq.addEventListener('load', initBotConversation);
-    oReq.open('GET', '/chatBot?userName=you');
+    oReq.open('GET', '/chatBot');
     oReq.send();
 }
 
