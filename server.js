@@ -33,8 +33,19 @@ const isSecure = process.env.NODE_ENV === 'development' ? false : true;
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);
 });
+app.get('/has-cookie',  function(req, res) {
+    const hasCookie = !!req.cookies && req.cookies.userid;
+    let response = {};
 
-app.get('/chatBot',  function(req, res) {
+    if (hasCookie) {
+        response = {
+            hasCookie
+        };
+    }
+    res.json(response);
+});
+
+app.get('/chatbot',  function(req, res) {
     const options = {
         method: 'POST',
         uri: 'https://europe.directline.botframework.com/v3/directline/tokens/generate',
@@ -43,22 +54,26 @@ app.get('/chatBot',  function(req, res) {
         },
         json: true
     };
+    const hasAcceptedCookie = req.query.hasAcceptedCookie === 'true';
+console.log('hasAcceptedCookie -> ', hasAcceptedCookie,' con query: ',req.query);
     rp(options).then(function (parsedBody) {
         let userId = req.cookies.userid;
-        if (!userId) {
-            const expiryDate = new Date( Date.now() + expiryOffsetMillis );
-
-            userId = crypto.randomBytes(4).toString('hex');
-            res.cookie('userid', userId, { 
-                secure: isSecure,
-                httpOnly: true,
-                path: '/',
-                expires: expiryDate
-              });
+        if (hasAcceptedCookie) {
+            if (!userId) {
+                const expiryDate = new Date( Date.now() + expiryOffsetMillis );
+    
+                userId = crypto.randomBytes(4).toString('hex');
+                res.cookie('userid', userId, { 
+                    secure: isSecure,
+                    httpOnly: true,
+                    path: '/',
+                    expires: expiryDate
+                  });
+            }
         }
 
         const response = {
-            userId,
+            userId: userId || 'default-user',
             userName: 'You',
             connectorToken: parsedBody.token,
             directLineURI: process.env.DIRECTLINE_ENDPOINT_URI
