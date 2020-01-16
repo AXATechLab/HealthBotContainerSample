@@ -261,6 +261,46 @@ a:active {
   text-align: center;
 }
 
+.m-button {
+  border: solid 2px #fff;
+  color: #fff;
+  background: transparent;
+  font-size: 14px;
+}
+
+.m-button:hover {
+  color: #3b3fd8;
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .o-cookie-disclaimer {
+    height: 30%;
+    font-size: 20px;
+  }
+
+  .m-button {
+    font-size: 18px;
+    height: 65px;
+    width: 130px;
+  }
+}
+
+@media (max-width: 360px) {
+  .o-cookie-disclaimer {
+    height: 40%;
+    font-size: 20px;
+  }
+
+  .m-button {
+    font-size: 18px;
+    height: 65px;
+    width: 130px;
+  }
+}
+
+
+
 @media (min-width: 768px) {
   .o-cookie-disclaimer .u-container {
     display: -webkit-box;
@@ -283,16 +323,4 @@ a:active {
     margin-top: 0;
     text-align: left;
   }
-}
-
-.m-button {
-  border: solid 2px #fff;
-  color: #fff;
-  background: transparent;
-  font-size: 14px;
-}
-
-.m-button:hover {
-  color: #3b3fd8;
-  background: #fff;
 }
