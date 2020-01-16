@@ -7,10 +7,8 @@ Microsoft Health bot web client.
 
 1.Set the following environment variables:
 
+`LOG_LEVEL` (possible values: info|debug|warn|error using info by default)
 `APP_SECRET`
-
 `WEBCHAT_SECRET`
-
 `EXPIRY_TIME_IN_MINUTES` (120 by default)
-
 `APPINSIGHTS_INSTRUMENTATIONKEY`
