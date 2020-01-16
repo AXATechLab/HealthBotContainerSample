@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  background: #eff1f4;
 }
 
 input[type=radio] {
@@ -29,7 +30,7 @@ input[type=checkbox] {
 #botContainer {
   float: right;
   height: 100%;
-  width: 460px;
+  width:100%
   position: relative;
   display: none;
   border-width: 2px;
@@ -43,8 +44,6 @@ input[type=checkbox] {
 #notFoundContainer {
   text-align: center;
 }
-
-
 
 .hiddenSession {
   display: hidden;
@@ -248,6 +247,7 @@ a:active {
   position:absolute;
   bottom:0;
   width:100%;
+  text-align: center;
 }
 
 .o-cookie-disclaimer a {
@@ -284,11 +284,18 @@ a:active {
   text-align: center;
 }
 
+.disclaimer__container {
+  margin-top: 16px;
+  text-align: center;
+}
+
 .m-button {
   border: solid 2px #fff;
   color: #fff;
   background: transparent;
   font-size: 14px;
+  padding: 5px;
+  margin: 0 5px;
 }
 
 .m-button:hover {
@@ -322,6 +329,14 @@ a:active {
   }
 }
 
+@media (max-width: 320px) {
+
+  .m-button {
+    font-size: 18px;
+    height: 48px;
+    width: 126px;
+  }
+}
 
 
 @media (min-width: 768px) {
@@ -342,8 +357,6 @@ a:active {
   }
 
   .o-cookie-disclaimer__container--rx {
-    width: calc(30% - 30px);
-    margin-top: 0;
-    text-align: left;
+    margin: 10px 0;
   }
 }
