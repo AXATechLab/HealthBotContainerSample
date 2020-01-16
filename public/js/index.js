@@ -80,6 +80,7 @@ function requestCookie(callback) {
 
                 if (parsedResponse && parsedResponse.hasCookie) {
                     cookieDisclaimer.style.display = 'none';
+                    hasAcceptedCookie = true;
                     callback();
                 } else {
                     setupCookieDisclaimer(callback);
@@ -91,12 +92,18 @@ function requestCookie(callback) {
     oReq.send(null);
 }
 
+function removeElement(elementId) {
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+}
+
 function requestChatbot() {
     const oReq = new XMLHttpRequest();
 
     oReq.addEventListener('load', initBotConversation);
-    oReq.open('GET', '/chatbot?hasAcceptedCookie=' + hasAcceptedCookie);
-    oReq.send();
+    oReq.open('POST', '/chatbot');
+    oReq.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    oReq.send(JSON.stringify({ 'hasAcceptedCookie': hasAcceptedCookie }));
 }
 
 function startApplication() {
@@ -129,7 +136,7 @@ function initBotConversation() {
     });
     startChat(user, botConnection);
     botConnection.postActivity({type: 'event', value: jsonWebToken, from: user, name: 'InitAuthenticatedConversation'}).subscribe(function (id) {});
-    botConnection.postActivity({type: 'message', text: greetings, from: user, locale: locale}).subscribe(function (id) {console.log("Greetings: " + greetings)});
+    botConnection.postActivity({type: 'message', text: greetings, from: user, locale: locale}).subscribe(function (id) {console.log('Greetings: ' + greetings)});
 }
 
 function startChat(user, botConnection) {
