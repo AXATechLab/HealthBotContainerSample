@@ -92,7 +92,7 @@ function requestCookie(callback) {
     oReq.send(null);
 }
 
-function removeElement(elementId) {
+function removeElementById(elementId) {
     var element = document.getElementById(elementId);
     element.parentNode.removeChild(element);
 }
@@ -140,6 +140,7 @@ function initBotConversation() {
 }
 
 function startChat(user, botConnection) {
+    removeElementById('pre-wc-header');
     const botContainer = document.getElementById('botContainer');
     botContainer.classList.add('wc-display');
     const locale = getLocale();

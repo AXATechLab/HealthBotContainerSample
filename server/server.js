@@ -29,7 +29,6 @@ app.use(errorHandler);
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 function errorHandler(err, req, res, next) {
-    res.status(500);
     res.status(500).send();
 }
 
@@ -53,6 +52,7 @@ app.get('/has-cookie',  function(req, res) {
         }
         res.json(response);
     } catch(error) {
+        // TODO: move to logger
         console.log('request error ', error);
         res.status(500).send();
     }
@@ -104,6 +104,7 @@ app.post('/chatbot',  async function(req, res) {
         const jwtToken = jwt.sign(response, process.env.APP_SECRET);
         res.send(jwtToken);
     } catch(error) {
+        // TODO: move to logger
         console.log('request error ', error);
         res.status(500).send();
     }
