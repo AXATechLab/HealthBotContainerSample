@@ -18,7 +18,7 @@ class Logger {
 				level: logLevel
 			};
 			defaultLogger = pino(settings);
-			defaultLogger.info(`log level: ${logLevel}`);
+			defaultLogger.info(`Log level: ${logLevel}`);
 		}
 		return defaultLogger;
 	}

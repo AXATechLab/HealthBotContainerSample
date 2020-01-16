@@ -35,7 +35,6 @@ module.exports = (app) => {
           if (!isValidBundle(req.body, 'hasAcceptedCookie', 'boolean')) {
               return res.status(400).json({});
           }
-  
           const hasAcceptedCookie = req.body.hasAcceptedCookie;
           let userId = req.cookies.userid;
           logger.debug(`hasAcceptedCookie: ${hasAcceptedCookie}`);
@@ -53,7 +52,7 @@ module.exports = (app) => {
   });
   
   app.get('*', function(req, res){
-      const notFoundPath = path.join(__dirname, '..', 'public', '404.html');
+      const notFoundPath = path.join(__dirname, '..', '..', 'public', '404.html');
       logger.error(`not found url: ${req.url}`);
       res.status(404).sendFile(notFoundPath);
   });
