@@ -9,7 +9,7 @@ const expiryOffsetMinutes = process.env.EXPIRY_TIME_IN_MINUTES ? parseInt(proces
 const expiryOffsetMillis = expiryOffsetMinutes * 60 * 1000;
 const isSecure = process.env.NODE_ENV === ENV.PRODUCTION;
 
-const generateUserId = () => crypto.randomBytes(4).toString('hex');
+const generateUserId = () => crypto.randomBytes(8).toString('hex');
 const generateCookie = (res, userId) => {
    const expiryDate = new Date( Date.now() + expiryOffsetMillis );
    const cookieSettings = { 
