@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const { SECURITY } = require('./settings');
 const loadRoutes = require('./routes');
@@ -20,6 +21,8 @@ if (process.env.NODE_ENV === ENV.PRODUCTION) {
 }
 
 const app = express();
+
+app.use(cors(SECURITY.CORS_POLICY));
 
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy(SECURITY.CSP_POLICY));
