@@ -11,6 +11,10 @@ const isValidBundle = (bundle, key) => {
    return Object.keys(bundle).length === 1 || bundle.hasOwnProperty(key);
 };
 
+const isValidOrUndefined = input => {
+    return input === undefined || validator.isAlphanumeric(input);
+};
+
 const directlineClient = new DirectlineClient(process.env.WEBCHAT_SECRET);
 
 module.exports = (app) => {
@@ -30,7 +34,7 @@ module.exports = (app) => {
           res.status(500).send();
       }
   });
-  
+
   app.post('/chatbot',  async function(req, res) {
       try {
           if (!isValidBundle(req.body, 'hasAcceptedCookie') || !validator.isBoolean(req.body.hasAcceptedCookie.toString())) {
@@ -39,7 +43,11 @@ module.exports = (app) => {
           const hasAcceptedCookie = req.body.hasAcceptedCookie;
           let userId = req.cookies.userid;
           logger.debug(`hasAcceptedCookie: ${hasAcceptedCookie}`);
-  
+
+          if (!isValidOrUndefined(userId)) {
+            return res.status(400).json({});
+          }
+
           if (hasAcceptedCookie && !userId) {
               userId = setupCookie(res);
           }
