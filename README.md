@@ -16,3 +16,9 @@ Microsoft Health bot web client.
 `EXPIRY_TIME_IN_MINUTES` (120 by default)
 
 `APPINSIGHTS_INSTRUMENTATIONKEY`
+
+Optional:
+
+`CORS_POLICY`
+
+`CSP_POLICY`
