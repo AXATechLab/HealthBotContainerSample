@@ -7,6 +7,12 @@ const cookiesDocument = '/assets/20200107-cookie_policy.pdf';
 const termsDocument = '/assets/20191220-terms_and_conditions.pdf';
 const cookieDisclaimer = document.getElementById('cookie_disclaimer');
 
+function ieVersion(uaString) {
+  uaString = uaString || navigator.userAgent;
+  var match = /\b(MSIE |Trident.*?rv:|Edge\/)(\d+)/.exec(uaString);
+  if (match) return parseInt(match[2])
+}
+
 function isPhone(elem) {
     return elem.href && /^tel:[0-9]/.test(elem.href);
 }
@@ -29,9 +35,13 @@ function ready(callback) {
 }
 
 ready(function getReady() { 
-    document.body.addEventListener('DOMSubtreeModified', function () {
-        setRelAttribute();
-    }, false);
+    const ieversion = ieVersion();
+
+    if (!ieversion) {
+        document.body.addEventListener('DOMSubtreeModified', function () {
+            setRelAttribute();
+        }, false);
+    }
 
     startApplication();
 });
@@ -128,11 +138,11 @@ function initBotConversation() {
     const user = {
         id: tokenPayload.userId,
         name: tokenPayload.userName,
-        hasAcceptedCookie
+        hasAcceptedCookie: hasAcceptedCookie
     };
     let domain = undefined;
     if (tokenPayload.directLineURI) {
-        domain = `https://${tokenPayload.directLineURI}/v3/directline`;
+        domain = 'https://' + tokenPayload.directLineURI + '/v3/directline';
     }
     const botConnection = new BotChat.DirectLine({
         token: tokenPayload.connectorToken,
