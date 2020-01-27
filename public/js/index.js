@@ -1,11 +1,11 @@
-const english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
-const spanish = ['es', 'es-es', 'en_es'];
+var english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
+var spanish = ['es', 'es-es', 'en_es'];
 
-const defaultLocale = 'es-es';
-let hasAcceptedCookie = false;
-const cookiesDocument = '/assets/20200107-cookie_policy.pdf';
-const termsDocument = '/assets/20191220-terms_and_conditions.pdf';
-const cookieDisclaimer = document.getElementById('cookie_disclaimer');
+var defaultLocale = 'es-es';
+var hasAcceptedCookie = false;
+var cookiesDocument = '/assets/20200107-cookie_policy.pdf';
+var termsDocument = '/assets/20191220-terms_and_conditions.pdf';
+var cookieDisclaimer = document.getElementById('cookie_disclaimer');
 
 function ieVersion(uaString) {
   uaString = uaString || navigator.userAgent;
@@ -17,11 +17,11 @@ function isPhone(elem) {
     return elem.href && /^tel:[0-9]/.test(elem.href);
 }
 function setRelAttribute() {
-    const elems = document.body.getElementsByTagName('a');
+    var elems = document.body.getElementsByTagName('a');
 
-    for (let i = 0; i < elems.length; i++) {
-        const elem = elems[i];
-        const attributes = isPhone(elem) ? 'nofollow' : 'noopener noreferrer nofollow';
+    for (var i = 0; i < elems.length; i++) {
+        var elem = elems[i];
+        var attributes = isPhone(elem) ? 'nofollow' : 'noopener noreferrer nofollow';
 
         elem.setAttribute('rel', attributes);
     }
@@ -35,7 +35,7 @@ function ready(callback) {
 }
 
 ready(function getReady() { 
-    const ieversion = ieVersion();
+    var ieversion = ieVersion();
 
     if (!ieversion) {
         document.body.addEventListener('DOMSubtreeModified', function () {
@@ -43,17 +43,21 @@ ready(function getReady() {
         }, false);
     }
 
-    startApplication();
+    if (!ieversion || ieversion > 9) {
+        startApplication();
+    } else {
+        cookieDisclaimer.style.display = 'none';
+    }
 });
 
 function isValidLocale(candidate) {
-    const validLangs = english.concat(spanish);
+    var validLangs = english.concat(spanish);
 
     return validLangs.includes(candidate.toLowerCase());
 }
 
 function getLocale() {
-    const params = BotChat.queryParams(location.search);
+    var params = BotChat.queryParams(location.search);
 
     return (params.locale && isValidLocale(params.locale)) ? params.locale : defaultLocale;
 }
@@ -63,9 +67,9 @@ function getGreetings(locale) {
 }
 
 function setupCookieDisclaimer(callback) {
-    const cookieLink = document.getElementById('cookie-link');
-    const acceptCookieButton = document.getElementById('accept_cookie');
-    const declineCookieButton = document.getElementById('decline_cookie');
+    var cookieLink = document.getElementById('cookie-link');
+    var acceptCookieButton = document.getElementById('accept_cookie');
+    var declineCookieButton = document.getElementById('decline_cookie');
 
     cookieLink.href = cookiesDocument;
 
@@ -85,13 +89,13 @@ function setupCookieDisclaimer(callback) {
 }
 
 function requestCookie(callback) {
-    const oReq = new XMLHttpRequest();
+    var oReq = new XMLHttpRequest();
 
     oReq.open('GET', '/has-cookie', true);
     oReq.onreadystatechange = function (aEvt) {
         if (oReq.readyState == 4) {
             if(oReq.status == 200) {
-                const parsedResponse = JSON.parse(oReq.responseText);
+                var parsedResponse = JSON.parse(oReq.responseText);
 
                 if (parsedResponse && parsedResponse.hasCookie) {
                     cookieDisclaimer.style.display = 'none';
@@ -113,7 +117,7 @@ function removeElementById(elementId) {
 }
 
 function requestChatbot() {
-    const oReq = new XMLHttpRequest();
+    var oReq = new XMLHttpRequest();
 
     oReq.addEventListener('load', initBotConversation);
     oReq.open('POST', '/chatbot');
@@ -126,25 +130,25 @@ function startApplication() {
 }
 
 function initBotConversation() {
-    const locale = getLocale();
-    const greetings = getGreetings(locale);
+    var locale = getLocale();
+    var greetings = getGreetings(locale);
 
     if (this.status >= 400) {
         console.error('bot init error');
         return;
     }
-    const jsonWebToken = this.response;
-    const tokenPayload = JSON.parse(atob(jsonWebToken.split('.')[1]));
-    const user = {
+    var jsonWebToken = this.response;
+    var tokenPayload = JSON.parse(atob(jsonWebToken.split('.')[1]));
+    var user = {
         id: tokenPayload.userId,
         name: tokenPayload.userName,
         hasAcceptedCookie: hasAcceptedCookie
     };
-    let domain = undefined;
+    var domain = undefined;
     if (tokenPayload.directLineURI) {
         domain = 'https://' + tokenPayload.directLineURI + '/v3/directline';
     }
-    const botConnection = new BotChat.DirectLine({
+    var botConnection = new BotChat.DirectLine({
         token: tokenPayload.connectorToken,
         domain: domain,
         webSocket: true
@@ -156,9 +160,9 @@ function initBotConversation() {
 
 function startChat(user, botConnection) {
     removeElementById('pre-wc-header');
-    const botContainer = document.getElementById('botContainer');
+    var botContainer = document.getElementById('botContainer');
     botContainer.classList.add('wc-display');
-    const locale = getLocale();
+    var locale = getLocale();
 
     BotChat.App({
         botConnection: botConnection,
