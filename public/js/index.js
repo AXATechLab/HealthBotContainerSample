@@ -6,8 +6,10 @@ let hasAcceptedCookie = false;
 const cookiesDocument = '/assets/20200107-cookie_policy.pdf';
 const termsDocument = '/assets/20191220-terms_and_conditions.pdf';
 const cookieDisclaimer = document.getElementById('cookie_disclaimer');
-const isPhone = elem => elem.href && /^tel:[0-9]/.test(elem.href);
 
+function isPhone(elem) {
+    return elem.href && /^tel:[0-9]/.test(elem.href);
+}
 function setRelAttribute() {
     const elems = document.body.getElementsByTagName('a');
 
@@ -19,14 +21,14 @@ function setRelAttribute() {
     }
 }
 
-const ready = (callback) => {
+function ready(callback) {
     if (document.readyState !== 'loading') {
         return callback();
     }
     document.addEventListener('DOMContentLoaded', callback);
 }
 
-ready(() => { 
+ready(function getReady() { 
     document.body.addEventListener('DOMSubtreeModified', function () {
         setRelAttribute();
     }, false);
@@ -57,14 +59,14 @@ function setupCookieDisclaimer(callback) {
 
     cookieLink.href = cookiesDocument;
 
-    acceptCookieButton.addEventListener('click', event => {
+    acceptCookieButton.addEventListener('click', function(event) {
         event.preventDefault();
         cookieDisclaimer.style.display = 'none';
         hasAcceptedCookie = true;
         callback();
     });
 
-    declineCookieButton.addEventListener('click', event => {
+    declineCookieButton.addEventListener('click', function(event) {
         event.preventDefault();
         cookieDisclaimer.style.display = 'none';
         hasAcceptedCookie = false;
