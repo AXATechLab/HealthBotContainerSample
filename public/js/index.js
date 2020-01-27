@@ -6,13 +6,16 @@ let hasAcceptedCookie = false;
 const cookiesDocument = '/assets/20200107-cookie_policy.pdf';
 const termsDocument = '/assets/20191220-terms_and_conditions.pdf';
 const cookieDisclaimer = document.getElementById('cookie_disclaimer');
+const isPhone = elem => elem.href && /^tel:[0-9]/.test(elem.href);
 
 function setRelAttribute() {
     const elems = document.body.getElementsByTagName('a');
 
     for (let i = 0; i < elems.length; i++) {
         const elem = elems[i];
-        elem.setAttribute('rel', 'noopener noreferrer nofollow');
+        const attributes = isPhone(elem) ? 'nofollow' : 'noopener noreferrer nofollow';
+
+        elem.setAttribute('rel', attributes);
     }
 }
 
