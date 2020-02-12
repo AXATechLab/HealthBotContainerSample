@@ -4,6 +4,11 @@ html, body {
   background: #eff1f4;
 }
 
+.main-body {
+  background-image: url('../assets/thumbnail_cookies-bg.jpg');
+  background-size: 100%;
+}
+
 input[type=radio] {
   width: 20px;
   height: 20px;
@@ -242,6 +247,7 @@ a:active {
 .o-cookie-disclaimer {
   font-family: 'Source Sans Pro', 'Arial', 'sans-serif';
   background-color: #5f5f5f;
+  z-index: 100;
   color: #fff;
 
   position:absolute;
@@ -303,9 +309,16 @@ a:active {
   background: #fff;
 }
 
+.alert.alert-warning.browser {
+  margin-top: 200px;
+  text-align: center;
+}
+
+/** MEDIA QUERIES **/
+
 @media (max-width: 768px) {
   .o-cookie-disclaimer {
-    height: 30%;
+    height: 35%;
     font-size: 20px;
   }
 
@@ -314,11 +327,23 @@ a:active {
     height: 65px;
     width: 130px;
   }
+
+  .main-body {
+    background-image: url('../assets/mobile-cookies-bg.jpg');
+    background-size: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .o-cookie-disclaimer {
+    height: 36%;
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 360px) {
   .o-cookie-disclaimer {
-    height: 40%;
+    height: 48%;
     font-size: 20px;
   }
 
@@ -330,7 +355,6 @@ a:active {
 }
 
 @media (max-width: 320px) {
-
   .m-button {
     font-size: 18px;
     height: 48px;
@@ -339,7 +363,20 @@ a:active {
 }
 
 
+
+
 @media (min-width: 768px) {
+  .o-cookie-disclaimer {
+    height: 20%;
+    font-size: 20px;
+  }
+
+  .m-button {
+    font-size: 18px;
+    height: 65px;
+    width: 130px;
+  }
+
   .o-cookie-disclaimer .u-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -361,8 +398,39 @@ a:active {
   }
 }
 
+@media (min-width: 768px) and (orientation: landscape) {
+  .o-cookie-disclaimer {
+    height: 25%;
+    font-size: 20px;
+  }
 
-.alert.alert-warning.browser {
-  margin-top: 200px;
-  text-align: center;
+  .main-body {
+    background-image: url('../assets/thumbnail_cookies-bg.jpg');
+    background-size: 100%;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .o-cookie-disclaimer {
+    height: 50%;
+    font-size: 20px;
+  }
+
+  .main-body {
+    background-image: url('../assets/thumbnail_cookies-bg.jpg');
+    background-size: 100%;
+  }
+}
+
+/* Iphone 5 */
+@media (max-width: 600px) and (orientation: landscape) {
+  .o-cookie-disclaimer {
+    height: 63%;
+    font-size: 20px;
+  }
+
+  .main-body {
+    background-image: url('../assets/thumbnail_cookies-bg.jpg');
+    background-size: 100%;
+  }
 }
