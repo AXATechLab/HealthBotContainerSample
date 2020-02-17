@@ -5,7 +5,7 @@ html, body {
 }
 
 .main-body {
-  background-image: url('../assets/thumbnail_cookies-bg.jpg');
+  background-image: url('../assets/cookie-bg-v2.jpg');
   background-size: 100%;
 }
 
@@ -329,7 +329,7 @@ a:active {
   }
 
   .main-body {
-    background-image: url('../assets/mobile-cookies-bg.jpg');
+    background-image: url('../assets/mobile-cookies-bg-v2.jpg');
     background-size: 100%;
   }
 }
@@ -405,7 +405,7 @@ a:active {
   }
 
   .main-body {
-    background-image: url('../assets/thumbnail_cookies-bg.jpg');
+    background-image: url('../assets/cookie-bg-v2.jpg');
     background-size: 100%;
   }
 }
@@ -417,7 +417,7 @@ a:active {
   }
 
   .main-body {
-    background-image: url('../assets/thumbnail_cookies-bg.jpg');
+    background-image: url('../assets/cookie-bg-v2.jpg');
     background-size: 100%;
   }
 }
@@ -430,7 +430,7 @@ a:active {
   }
 
   .main-body {
-    background-image: url('../assets/thumbnail_cookies-bg.jpg');
+    background-image: url('../assets/cookie-bg-v2.jpg');
     background-size: 100%;
   }
 }
