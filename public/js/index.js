@@ -1,4 +1,5 @@
-var english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us'];
+var english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us', 'it_it'];
+var italian = ['it', 'it_it', 'it-it'];
 var spanish = ['es', 'es-es', 'en_es'];
 
 var defaultLocale = 'es-es';
@@ -52,6 +53,8 @@ ready(function getReady() {
 
 function isValidLocale(candidate) {
     var validLangs = english.concat(spanish);
+
+    validLangs = italian.concat(validLangs);
 
     return validLangs.includes(candidate.toLowerCase());
 }
