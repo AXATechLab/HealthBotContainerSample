@@ -1,5 +1,6 @@
 var english = ['en', 'en-gb', 'en-us', 'en_gb', 'en_us', 'it_it'];
 var italian = ['it', 'it_it', 'it-it'];
+var deutsch = ['de', 'de_de', 'de-de'];
 var spanish = ['es', 'es-es', 'en_es'];
 
 var defaultLocale = 'es-es';
@@ -55,6 +56,7 @@ function isValidLocale(candidate) {
     var validLangs = english.concat(spanish);
 
     validLangs = italian.concat(validLangs);
+    validLangs = deutsch.concat(validLangs);
 
     return validLangs.includes(candidate.toLowerCase());
 }
